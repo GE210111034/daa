@@ -51,13 +51,13 @@ int algo(int arr[], int size, int key, int *itr) {
 int main() {
     int T;
     scanf("%d", &T);
-    int size = 1000;
+    int size = 100;
     int itr;
     int i=0;
     ResultHeader("SNo,Time,Count,Size,Iterations,Key");
     while(i++ < T){
         printf("%d ", i);
-        int* arr = randArray(size, 1);
+        int* arr = randArrayInt(size, 1);
         int key = randElement(arr, size, 1);
         sort(arr, arr + size);
         itr = 0;
@@ -79,7 +79,7 @@ int main() {
         Result(i,execution_time, count, size, itr, key);
         cout << endl;
         delete[] arr;
-        size += 999;
+        size += 200;
     }
         printf("\ndone\n");
     return 0;

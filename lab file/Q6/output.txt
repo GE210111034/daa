@@ -1,0 +1,36 @@
+gitpod /workspace/daa/lab file/Q6 (main) 
+$ cd "/workspace/daa/lab file/Q6/" && g++ Que.cpp -o Que && "/workspace/daa/lab file/Q6/"Que
+1
+range (start:1 gap:2 size:10 key:5)1 1 10 5
+arr : 1 2 3 4 5 6 7 8 9 10 
+Pair found: (1, 6)
+Pair found: (2, 7)
+Pair found: (3, 8)
+Pair found: (4, 9)
+Pair found: (5, 10)
+Total No of pair Found: 5
+
+done
+gitpod /workspace/daa/lab file/Q6 (main) 
+$ cd "/workspace/daa/lab file/Q6/" && g++ Que.cpp -o Que && "/workspace/daa/lab file/Q6/"Que
+1
+range (start:1 gap:2 size:10 key:5)1 2.96 10 6
+arr : 1 3 6 9 12 15 18 21 24 27 
+Pair found: (3, 9)
+Pair found: (6, 12)
+Pair found: (9, 15)
+Pair found: (12, 18)
+Pair found: (15, 21)
+Pair found: (18, 24)
+Pair found: (21, 27)
+Total No of pair Found: 7
+
+done
+gitpod /workspace/daa/lab file/Q6 (main) 
+$ cd "/workspace/daa/lab file/Q6/" && g++ Que.cpp -o Que && "/workspace/daa/lab file/Q6/"Que
+1
+range (start:1 gap:2 size:10 key:5)1 2 10 7
+arr : 1 3 5 7 9 11 13 15 17 19 
+No pair Found !
+
+done

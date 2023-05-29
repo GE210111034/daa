@@ -1,0 +1,42 @@
+gitpod /workspace/daa (main) 
+$ cd "/workspace/daa/lab file/Q5/" && g++ Que.cpp -o Que && "/workspace/daa/lab file/Q5/"Que
+3
+range (start:1 gap:2 size:10) 2 2.66 20
+arr : 2 4 7 9 12 15 17 20 23 25 28 31 33 36 39 41 44 47 49 52 
+Indices: 0, 17, 18
+Sum: 2, 47, 49
+Indices: 0, 14, 15
+Sum: 2, 39, 41
+Indices: 0, 11, 12
+Sum: 2, 31, 33
+Indices: 0, 8, 9
+Sum: 2, 23, 25
+Indices: 0, 5, 6
+Sum: 2, 15, 17
+Indices: 0, 2, 3
+Sum: 2, 7, 9
+Total No of Indices Found : 6
+range (start:1 gap:2 size:10) 3 2.987 10
+arr : 3 5 8 11 14 17 20 23 26 29 
+Indices: 0, 8, 9
+Sum: 3, 26, 29
+Indices: 0, 7, 8
+Sum: 3, 23, 26
+Indices: 0, 6, 7
+Sum: 3, 20, 23
+Indices: 0, 5, 6
+Sum: 3, 17, 20
+Indices: 0, 4, 5
+Sum: 3, 14, 17
+Indices: 0, 3, 4
+Sum: 3, 11, 14
+Indices: 0, 2, 3
+Sum: 3, 8, 11
+Indices: 0, 1, 2
+Sum: 3, 5, 8
+Total No of Indices Found : 8
+range (start:1 gap:2 size:10) 1 2 100
+arr : 1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45 47 49 51 53 55 57 59 61 63 65 67 69 71 73 75 77 79 81 83 85 87 89 91 93 95 97 99 101 103 105 107 109 111 113 115 117 119 121 123 125 127 129 131 133 135 137 139 141 143 145 147 149 151 153 155 157 159 161 163 165 167 169 171 173 175 177 179 181 183 185 187 189 191 193 195 197 199 
+No Indices Found !
+
+done

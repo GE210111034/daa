@@ -13,7 +13,7 @@ using namespace std;
 // Global file stream object for writing to "output.csv"
 ofstream outputFile;
 
-int* randArray(int size, int dpt) {
+int* randArrayInt(int size, int dpt) {
     int* arr = new int[size];
     int start = 1, end;
     if (!dpt) {

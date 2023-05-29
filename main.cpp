@@ -25,7 +25,7 @@ int main() {
     ResultHeader("Time,Flag,Size,Iterations,Key");
     while(i++ < T){ 
         printf("%d ", i);
-        int* arr = randArray(size, 0);
+        int* arr = randArrayInt(size, 0);
         int key = randElement(arr, size, 0);
         itr = 0;
     //####################################################    

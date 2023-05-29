@@ -1,0 +1,38 @@
+# Initialize variables
+prev_iterations = 0
+filtered_data = []
+
+# Filter the data points where the number of iterations is larger than the previous number of iterations
+for index, row in df.iterrows():
+    if row['Iterations'] > prev_iterations:
+        filtered_data.append(row)
+        prev_iterations = row['Iterations']
+
+# Create a new DataFrame with the filtered data points
+filtered_df = pd.DataFrame(filtered_data)
+
+# Plot the line graph
+plt.plot(filtered_df['Size'], filtered_df['Iterations'])
+plt.xlabel('Size')
+plt.ylabel('Iterations')
+plt.title('Algorithm Complexity')
+plt.show()
+
+prev_time = 0
+filtered_data = []
+
+# Filter the data points where time is larger than previous time
+for index, row in df.iterrows():
+    if row['Time'] > prev_time:
+        filtered_data.append(row)
+        prev_time = row['Time']
+
+# Create a new DataFrame with the filtered data points
+filtered_df = pd.DataFrame(filtered_data)
+
+# Plot the line graph
+sns.lineplot(x='SNo', y='Time', data=filtered_df)
+plt.xlabel('SNo 1-5000')
+plt.ylabel('Time in sec')
+plt.title('Time per testcase')
+plt.show()
