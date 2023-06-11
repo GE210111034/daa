@@ -1,41 +1,40 @@
-#include <iostream>
-#include <cstdlib>
-#include <algorithm>
-#include <unordered_map>
-#include <unordered_set>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <vector>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <stdbool.h>
 
-using namespace std;
-
-// Global file stream object for writing to "output.csv"
-ofstream outputFile;
+// Global file stream object for writing to "output1.csv"
+FILE* outputFile;
 
 int* randArrayInt(int size, int dpt) {
-    int* arr = new int[size];
+    int* arr = (int*)malloc(size * sizeof(int));
     int start = 1, end;
     if (!dpt) {
         end = size * 2;
         // Generate a range of unique numbers
-        int* uniqueArr = new int[end - start + 1];
+        int* uniqueArr = (int*)malloc((end - start + 1) * sizeof(int));
         for (int i = 0; i < end - start + 1; i++) {
             uniqueArr[i] = start + i;
         }
         // Shuffle the unique numbers
-        srand(time(nullptr));
-        random_shuffle(uniqueArr, uniqueArr + end - start + 1);
-        
+        srand(time(NULL));
+        for (int i = end - start; i > 0; i--) {
+            int j = rand() % (i + 1);
+            int temp = uniqueArr[i];
+            uniqueArr[i] = uniqueArr[j];
+            uniqueArr[j] = temp;
+        }
+
         // Take the first 'size' elements from the shuffled array
         for (int i = 0; i < size; i++) {
             arr[i] = uniqueArr[i];
         }
-        delete[] uniqueArr;
-    } else {
+        free(uniqueArr);
+    }
+    else {
         end = size * 0.66;
         // Generate random numbers with the possibility of duplicates
-        srand(time(nullptr));
+        srand(time(NULL));
         for (int i = 0; i < size; i++) {
             arr[i] = start + rand() % (end - start + 1);
         }
@@ -45,57 +44,76 @@ int* randArrayInt(int size, int dpt) {
 
 int randElement(int* arr, int size, int dpt) {
     if (dpt == 0) {
-        srand(time(nullptr));  // Seed the random number generator
+        srand(time(NULL));  // Seed the random number generator
         int randIndex = rand() % size;
         return arr[randIndex];
-    } else if (dpt == 1) {
-        unordered_set<int> duplicates;
-        unordered_set<int> uniqueElements;
+    }
+    else if (dpt == 1) {
+        int* duplicates = (int*)malloc(size * sizeof(int));
+        int* uniqueElements = (int*)malloc(size * sizeof(int));
+        int duplicateCount = 0;
+        int uniqueCount = 0;
         for (int i = 0; i < size; i++) {
-            if (uniqueElements.find(arr[i]) != uniqueElements.end()) {
-                duplicates.insert(arr[i]);
-            } else {
-                uniqueElements.insert(arr[i]);
+            bool isDuplicate = false;
+            for (int j = 0; j < uniqueCount; j++) {
+                if (arr[i] == uniqueElements[j]) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (isDuplicate) {
+                duplicates[duplicateCount++] = arr[i];
+            }
+            else {
+                uniqueElements[uniqueCount++] = arr[i];
             }
         }
-        if (duplicates.empty()) {
+        if (duplicateCount == 0) {
             // Return middle element if no appropriate key is found
-            return (int) size * 0.5; 
+            free(duplicates);
+            free(uniqueElements);
+            return size / 2;
         }
 
-        srand(time(nullptr));  // Seed the random number generator
-        int randIndex = rand() % duplicates.size();
-        auto it = duplicates.begin();
-        advance(it, randIndex);
-        int result = *it;
+        // Sort the array
+        for (int i = 0; i < duplicateCount - 1; i++) {
+            for (int j = 0; j < duplicateCount - i - 1; j++) {
+                if (duplicates[j] > duplicates[j + 1]) {
+                    int temp = duplicates[j];
+                    duplicates[j] = duplicates[j + 1];
+                    duplicates[j + 1] = temp;
+                }
+            }
+        }
+
+        srand(time(NULL));  // Seed the random number generator
+        int randIndex = rand() % duplicateCount;
+        int result = duplicates[randIndex];
+        free(duplicates);
+        free(uniqueElements);
         return result;
     }
 
     // Invalid dpt value, return -1 or any other value to indicate an error
-    return (int) size * 0.5; // Return middle element if no appropriate key is found
+    return size / 2; // Return middle element if no appropriate key is found
 }
 
-
 // Function to write the header to the output file
-void ResultHeader(const string& header) {
-    outputFile.open("output.csv", ofstream::out | ofstream::app);
-    outputFile << header << endl;
-    outputFile.close();
+void ResultHeader(const char* header) {
+    outputFile = fopen("output1.csv", "a");
+    fprintf(outputFile, "%s\n", header);
+    fclose(outputFile);
 }
 
 // Function to write a row of values to the output file
-template<typename... Args>
-void Result(const Args&... args) {
-    ostringstream oss;
-    bool isFirst = true;
-    ((oss << (isFirst ? "" : ",") << args, isFirst = false), ...);
-    string line = oss.str();
+void Result(const char* format, ...) {
+    va_list args;
+    va_start(args, format);
+    char line[256];
+    vsprintf(line, format, args);
+    va_end(args);
 
-    outputFile.open("output.csv", ofstream::out | ofstream::app);
-    outputFile << line << endl;
-    outputFile.close();
+    outputFile = fopen("output1.csv", "a");
+    fprintf(outputFile, "%s\n", line);
+    fclose(outputFile);
 }
-
-
-
-
