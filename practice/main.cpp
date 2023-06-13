@@ -1,6 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+typedef vector<int> BULB;
+int countAdjecentBulds(BULB B){
+    int countE = 0, countO = 0, size = B.size();
+    for(int i=0;i<size;i+=2) if(B[i]) countE++;
+    for(int i=1;i<size;i+=2) if(B[i]) countO++;
+    return max(countE, countO);
+}
+
+int main(){
+    int size;
+    cin >> size;
+    BULB B(size);
+    for(auto& b : B) cin >> b;
+    int need;
+    cin >> need;
+    if(need >= countAdjecentBulds(B)) cout << "Yes";
+    else cout << "No";
+    return 0;
+}
+
 string reverseString(string str) {
     reverse(str.begin(), str.end());
     return str;

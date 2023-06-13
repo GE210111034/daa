@@ -1,0 +1,11 @@
+Enter the number of vertices: 4
+Enter the adjacency matrix:
+0 10 3 2
+0 0 0 7
+0 0 0 6
+0 0 0 0
+Enter the source vertex: 1
+Enter the destination vertex: 4
+Enter the number of edges on the path: 2
+Shortest path from source to destination: 0 -> 3
+Weight of shortest path from (1,4) with 2 edges: 9
